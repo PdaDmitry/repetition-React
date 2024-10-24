@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 // import { Bird } from "../Bird/Bird";
 // import { Logo } from "../Logo/Logo";
@@ -15,6 +15,15 @@ function App() {
 
   const [currentValue, setCurrentValue] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    // console.log('You can see me only once!');
+    console.log(`Curreent value: ${currentValue}`);
+
+    return () => {
+      // console.log('useEffect unmount!');
+    };
+  }, [currentValue]);
 
   const onPlus = () => {
     setCurrentValue(currentValue + 1);

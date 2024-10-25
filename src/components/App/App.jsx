@@ -8,6 +8,8 @@ import { Product } from '../Product/Product';
 
 import css from './App.module.css';
 import { Button } from '../Button/Button';
+import { LoginForm } from '../../LoginForm/LoginForm';
+import { SearchBar } from '../../SearchBar/SearchBar';
 
 function App() {
   const tacos = 'https://images.pexels.com/photos/461198/pexels-photo-461198.jpeg?dpr=2&w=140';
@@ -46,6 +48,10 @@ function App() {
     setIsOpen(prevIsOpen => !prevIsOpen);
   };
 
+  const handleLogin = data => {
+    console.log(data);
+  };
+
   return (
     <>
       <h1 className={css.title}>Best selling</h1>
@@ -66,6 +72,8 @@ function App() {
       <Button onClick={onMinus}>Current value minus</Button>
       <Button onClick={onReset}>Reset</Button>
       <Button onClick={toggle}>{isOpen ? 'Hide' : 'Show'}</Button>
+      <LoginForm onLogin={handleLogin} />
+      <SearchBar />
     </>
   );
 }

@@ -12,6 +12,7 @@ import { LoginForm } from '../../LoginForm/LoginForm';
 import { SearchBar } from '../../SearchBar/SearchBar';
 import { LangSwitcher } from '../../LangSwitcher/LangSwitcher';
 import { RadioBattons } from '../../RadioBattons/RadioBattons';
+import { Checkbox } from '../../Checkbox/checkbox';
 
 function App() {
   const tacos = 'https://images.pexels.com/photos/461198/pexels-photo-461198.jpeg?dpr=2';
@@ -22,6 +23,11 @@ function App() {
   const [inputValue, setInputValue] = useState('');
   const [lang, setLang] = useState('en');
   const [coffeeSize, setCoffeeSize] = useState('sm');
+  const [hasAccept, setHasAccept] = useState(false);
+
+  const handleAccept = e => {
+    setHasAccept(e.target.checked);
+  };
 
   const handleSizeChange = e => {
     setCoffeeSize(e.target.value);
@@ -70,6 +76,7 @@ function App() {
       <RadioBattons value={coffeeSize} onChange={handleSizeChange} />
       <p>Selected Language: {lang}</p>
       <LangSwitcher value={lang} onSelect={setLang} />
+      <Checkbox value={hasAccept} onShow={handleAccept} />
       <h1 className={css.title}>Best selling</h1>
       <div className={css.cont}>
         <Product name="Tacos With Lime" img={tacos} price="100" />

@@ -3,7 +3,7 @@ import css from './RadioBattons.module.css';
 export function RadioBattons({ value, onChange }) {
   return (
     <>
-      <h3>Selected coffe size</h3>
+      <h3>Selected coffee size</h3>
       <label className={css.radioBtn}>
         <input
           type="radio"

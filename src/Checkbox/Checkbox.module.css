@@ -1,0 +1,29 @@
+.contCheck {
+  /* display: flex; */
+  /* flex-direction: column;  */
+  gap: 8px; /* Space between checkbox and button */
+}
+
+.label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.chackBtn {
+  display: block;
+  background-color: aqua;
+  border-radius: 5px;
+  padding: 2px 5px;
+  cursor: pointer;
+}
+
+.chackBtn:active {
+  background-color: rgb(220, 240, 240);
+}
+
+.chackBtn:disabled {
+  background-color: #ccc;
+  color: #666;
+  /* cursor: not-allowed; cursor in the form of a "Prohibited!" sign */
+}

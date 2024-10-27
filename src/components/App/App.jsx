@@ -18,6 +18,7 @@ import axios from 'axios';
 import { ArticleList } from '../../ArticleList/ArticleList';
 import { LoaderComponent } from '../../LoaderComponent/LoaderComponent';
 import { ErrorMessage } from '../../ErrorMessage/ErrorMessage';
+import { fetchArticlesWithTopic } from '../../articles-api';
 
 function App() {
   const tacos = 'https://images.pexels.com/photos/461198/pexels-photo-461198.jpeg?dpr=2';
@@ -38,9 +39,11 @@ function App() {
       try {
         setLoading(true);
         seterror(false);
-        const response = await axios.get('https://hn.algolia.com/api/v1/search?query=react');
-        console.log(response.data.hits);
-        setArticles(response.data.hits);
+        setArticles([]);
+        // const response = await axios.get('https://hn.algolia.com/api/v1/search?query=react');
+        const data = await fetchArticlesWithTopic('node');
+        console.log(data);
+        setArticles(data);
       } catch (error) {
         console.log(error);
         seterror(true);

@@ -13,6 +13,9 @@ import { SearchBar } from '../../SearchBar/SearchBar';
 import { LangSwitcher } from '../../LangSwitcher/LangSwitcher';
 import { RadioBattons } from '../../RadioBattons/RadioBattons';
 import { Checkbox } from '../../Checkbox/checkbox';
+import { FeedbackForm } from '../../FeedbackForm/FeedbackForm';
+import axios from 'axios';
+import { ArticleList } from '../../ArticleList/ArticleList';
 
 function App() {
   const tacos = 'https://images.pexels.com/photos/461198/pexels-photo-461198.jpeg?dpr=2';
@@ -24,6 +27,17 @@ function App() {
   const [lang, setLang] = useState('en');
   const [coffeeSize, setCoffeeSize] = useState('sm');
   const [hasAccept, setHasAccept] = useState(false);
+  const [articles, setArticles] = useState([]);
+
+  useEffect(() => {
+    async function fetchArticles() {
+      const response = await axios.get('https://hn.algolia.com/api/v1/search?query=react');
+      console.log(response.data.hits);
+      setArticles(response.data.hits);
+    }
+
+    fetchArticles();
+  }, []);
 
   const handleAccept = e => {
     setHasAccept(e.target.checked);
@@ -73,6 +87,9 @@ function App() {
 
   return (
     <>
+      <h2>Latest articles</h2>
+      {articles.length > 0 && <ArticleList items={articles} />}
+      <FeedbackForm />
       <RadioBattons value={coffeeSize} onChange={handleSizeChange} />
       <p>Selected Language: {lang}</p>
       <LangSwitcher value={lang} onSelect={setLang} />

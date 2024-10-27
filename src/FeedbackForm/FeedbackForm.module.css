@@ -1,0 +1,26 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 270px;
+  border: 1px solid black;
+  border-radius: 6px;
+  padding: 8px;
+}
+
+.field {
+  padding: 3px;
+}
+
+.Btn {
+  display: block;
+  /* width: 70px; */
+  margin: 0 auto;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.error {
+  color: red;
+  font-size: 12px;
+}

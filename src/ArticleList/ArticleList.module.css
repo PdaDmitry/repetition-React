@@ -1,0 +1,8 @@
+.contUl {
+  margin-bottom: 20px;
+}
+
+.listElem {
+  display: flex;
+  gap: 5px;
+}

@@ -1,3 +1,9 @@
+.contLoader {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+
 .title {
   text-align: center;
 }

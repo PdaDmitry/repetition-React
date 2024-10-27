@@ -16,6 +16,8 @@ import { Checkbox } from '../../Checkbox/checkbox';
 import { FeedbackForm } from '../../FeedbackForm/FeedbackForm';
 import axios from 'axios';
 import { ArticleList } from '../../ArticleList/ArticleList';
+import { LoaderComponent } from '../../LoaderComponent/LoaderComponent';
+import { ErrorMessage } from '../../ErrorMessage/ErrorMessage';
 
 function App() {
   const tacos = 'https://images.pexels.com/photos/461198/pexels-photo-461198.jpeg?dpr=2';
@@ -28,12 +30,23 @@ function App() {
   const [coffeeSize, setCoffeeSize] = useState('sm');
   const [hasAccept, setHasAccept] = useState(false);
   const [articles, setArticles] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, seterror] = useState(false);
 
   useEffect(() => {
     async function fetchArticles() {
-      const response = await axios.get('https://hn.algolia.com/api/v1/search?query=react');
-      console.log(response.data.hits);
-      setArticles(response.data.hits);
+      try {
+        setLoading(true);
+        seterror(false);
+        const response = await axios.get('https://hn.algolia.com/api/v1/search?query=react');
+        console.log(response.data.hits);
+        setArticles(response.data.hits);
+      } catch (error) {
+        console.log(error);
+        seterror(true);
+      } finally {
+        setLoading(false);
+      }
     }
 
     fetchArticles();
@@ -88,32 +101,39 @@ function App() {
   return (
     <>
       <h2>Latest articles</h2>
-      {articles.length > 0 && <ArticleList items={articles} />}
-      <FeedbackForm />
-      <RadioBattons value={coffeeSize} onChange={handleSizeChange} />
-      <p>Selected Language: {lang}</p>
-      <LangSwitcher value={lang} onSelect={setLang} />
-      <Checkbox value={hasAccept} onShow={handleAccept} />
-      <h1 className={css.title}>Best selling</h1>
-      <div className={css.cont}>
+      {loading && (
+        <div className={css.contLoader}>
+          <LoaderComponent />
+          <p>Loading data, please wait...</p>
+        </div>
+      )}
+      {error && <ErrorMessage />}
+      {!error && articles.length > 0 && <ArticleList items={articles} />}
+      {/* <FeedbackForm /> */}
+      {/* <RadioBattons value={coffeeSize} onChange={handleSizeChange} /> */}
+      {/* <p>Selected Language: {lang}</p> */}
+      {/* <LangSwitcher value={lang} onSelect={setLang} /> */}
+      {/* <Checkbox value={hasAccept} onShow={handleAccept} /> */}
+      {/* <h1 className={css.title}>Best selling</h1> */}
+      {/* <div className={css.cont}>
         <Product name="Tacos With Lime" img={tacos} price="100" />
         <Product name="Fries and Burger" img={burger} price="120" />
-      </div>
-      <Card>
+      </div> */}
+      {/* <Card>
         <h2 className={css.titleSecond}>
           <IoMdMenu className={css.icon} />
           Card title!
         </h2>
         <p>Text between opening and closing tag</p>
-      </Card>
+      </Card> */}
       {/* <Button name="Olga" /> */}
-      <h2 className={css.titleCurrent}>Current value: {isOpen && currentValue}</h2>
-      <Button onClick={onPlus}>Current value plus</Button>
-      <Button onClick={onMinus}>Current value minus</Button>
-      <Button onClick={onReset}>Reset</Button>
-      <Button onClick={toggle}>{isOpen ? 'Hide' : 'Show'}</Button>
-      <LoginForm onLogin={handleLogin} />
-      <SearchBar value={inputValue} onChange={handleChange} />
+      {/* <h2 className={css.titleCurrent}>Current value: {isOpen && currentValue}</h2> */}
+      {/* <Button onClick={onPlus}>Current value plus</Button> */}
+      {/* <Button onClick={onMinus}>Current value minus</Button> */}
+      {/* <Button onClick={onReset}>Reset</Button> */}
+      {/* <Button onClick={toggle}>{isOpen ? 'Hide' : 'Show'}</Button> */}
+      {/* <LoginForm onLogin={handleLogin} /> */}
+      {/* <SearchBar value={inputValue} onChange={handleChange} /> */}
     </>
   );
 }

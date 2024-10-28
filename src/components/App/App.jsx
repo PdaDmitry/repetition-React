@@ -12,13 +12,16 @@ import { LoginForm } from '../../LoginForm/LoginForm';
 import { SearchBar } from '../../SearchBar/SearchBar';
 import { LangSwitcher } from '../../LangSwitcher/LangSwitcher';
 import { RadioBattons } from '../../RadioBattons/RadioBattons';
-import { Checkbox } from '../../Checkbox/checkbox';
+// import { Checkbox } from '../../Checkbox/checkbox';
+import { Checkbox } from '../Checkbox/Checkbox';
 import { FeedbackForm } from '../../FeedbackForm/FeedbackForm';
-import axios from 'axios';
-import { ArticleList } from '../../ArticleList/ArticleList';
+// import axios from 'axios';
+
 import { LoaderComponent } from '../../LoaderComponent/LoaderComponent';
 import { ErrorMessage } from '../../ErrorMessage/ErrorMessage';
 import { fetchArticlesWithTopic } from '../../articles-api';
+import { ArticleList } from '../ArticleList/ArticleList';
+import { SearchForm } from '../SearchForm/SearchForm';
 
 function App() {
   const tacos = 'https://images.pexels.com/photos/461198/pexels-photo-461198.jpeg?dpr=2';
@@ -34,26 +37,23 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [error, seterror] = useState(false);
 
-  useEffect(() => {
-    async function fetchArticles() {
-      try {
-        setLoading(true);
-        seterror(false);
-        setArticles([]);
-        // const response = await axios.get('https://hn.algolia.com/api/v1/search?query=react');
-        const data = await fetchArticlesWithTopic('node');
-        console.log(data);
-        setArticles(data);
-      } catch (error) {
-        console.log(error);
-        seterror(true);
-      } finally {
-        setLoading(false);
-      }
-    }
+  const handleChangeTopic = async newTopic => {
+    try {
+      setLoading(true);
+      seterror(false);
+      setArticles([]);
 
-    fetchArticles();
-  }, []);
+      const data = await fetchArticlesWithTopic(newTopic);
+
+      console.log(data);
+      setArticles(data);
+    } catch (error) {
+      console.log(error);
+      seterror(true);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const handleAccept = e => {
     setHasAccept(e.target.checked);
@@ -68,8 +68,7 @@ function App() {
   };
 
   useEffect(() => {
-    // console.log('You can see me only once!');
-    console.log(`Curreent value: ${currentValue}`);
+    console.log(`Current value: ${currentValue}`);
 
     return () => {
       // console.log('useEffect unmount!');
@@ -104,6 +103,7 @@ function App() {
   return (
     <>
       <h2>Latest articles</h2>
+      <SearchForm onSearchTopic={handleChangeTopic} />
       {loading && (
         <div className={css.contLoader}>
           <LoaderComponent />
@@ -117,6 +117,7 @@ function App() {
       {/* <p>Selected Language: {lang}</p> */}
       {/* <LangSwitcher value={lang} onSelect={setLang} /> */}
       {/* <Checkbox value={hasAccept} onShow={handleAccept} /> */}
+
       {/* <h1 className={css.title}>Best selling</h1> */}
       {/* <div className={css.cont}>
         <Product name="Tacos With Lime" img={tacos} price="100" />

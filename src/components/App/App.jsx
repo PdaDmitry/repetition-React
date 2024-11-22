@@ -2,70 +2,70 @@ import { useEffect, useState } from 'react';
 
 // import { Bird } from "../Bird/Bird";
 // import { Logo } from "../Logo/Logo";
-import { IoMdMenu } from 'react-icons/io';
-import { Card } from '../Card/Card';
-import { Product } from '../Product/Product';
+// import { IoMdMenu } from 'react-icons/io';
+// import { Card } from '../Card/Card';
+// import { Product } from '../Product/Product';
 
 import css from './App.module.css';
 import { Button } from '../Button/Button';
-import { LoginForm } from '../../LoginForm/LoginForm';
-import { SearchBar } from '../../SearchBar/SearchBar';
-import { LangSwitcher } from '../../LangSwitcher/LangSwitcher';
-import { RadioBattons } from '../../RadioBattons/RadioBattons';
+// import { LoginForm } from '../../LoginForm/LoginForm';
+// import { SearchBar } from '../../SearchBar/SearchBar';
+// import { LangSwitcher } from '../../LangSwitcher/LangSwitcher';
+// import { RadioBattons } from '../../RadioBattons/RadioBattons';
 // import { Checkbox } from '../../Checkbox/checkbox';
-import { Checkbox } from '../Checkbox/Checkbox';
-import { FeedbackForm } from '../../FeedbackForm/FeedbackForm';
+// import { Checkbox } from '../Checkbox/Checkbox';
+// import { FeedbackForm } from '../../FeedbackForm/FeedbackForm';
 // import axios from 'axios';
 
-import { LoaderComponent } from '../../LoaderComponent/LoaderComponent';
-import { ErrorMessage } from '../../ErrorMessage/ErrorMessage';
-import { fetchArticlesWithTopic } from '../../articles-api';
-import { ArticleList } from '../ArticleList/ArticleList';
-import { SearchForm } from '../SearchForm/SearchForm';
+// import { LoaderComponent } from '../../LoaderComponent/LoaderComponent';
+// import { ErrorMessage } from '../../ErrorMessage/ErrorMessage';
+// import { fetchArticlesWithTopic } from '../../articles-api';
+// import { ArticleList } from '../ArticleList/ArticleList';
+// import { SearchForm } from '../SearchForm/SearchForm';
 
 function App() {
-  const tacos = 'https://images.pexels.com/photos/461198/pexels-photo-461198.jpeg?dpr=2';
-  const burger = 'https://images.pexels.com/photos/70497/pexels-photo-70497.jpeg?dpr=2';
+  // const tacos = 'https://images.pexels.com/photos/461198/pexels-photo-461198.jpeg?dpr=2';
+  // const burger = 'https://images.pexels.com/photos/70497/pexels-photo-70497.jpeg?dpr=2';
 
   const [currentValue, setCurrentValue] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
-  const [inputValue, setInputValue] = useState('');
-  const [lang, setLang] = useState('en');
-  const [coffeeSize, setCoffeeSize] = useState('sm');
-  const [hasAccept, setHasAccept] = useState(false);
-  const [articles, setArticles] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, seterror] = useState(false);
+  // const [inputValue, setInputValue] = useState('');
+  // const [lang, setLang] = useState('en');
+  // const [coffeeSize, setCoffeeSize] = useState('sm');
+  // const [hasAccept, setHasAccept] = useState(false);
+  // const [articles, setArticles] = useState([]);
+  // const [loading, setLoading] = useState(false);
+  // const [error, seterror] = useState(false);
 
-  const handleChangeTopic = async newTopic => {
-    try {
-      setLoading(true);
-      seterror(false);
-      setArticles([]);
+  // const handleChangeTopic = async newTopic => {
+  //   try {
+  //     setLoading(true);
+  //     seterror(false);
+  //     setArticles([]);
 
-      const data = await fetchArticlesWithTopic(newTopic);
+  //     const data = await fetchArticlesWithTopic(newTopic);
 
-      console.log(data);
-      setArticles(data);
-    } catch (error) {
-      console.log(error);
-      seterror(true);
-    } finally {
-      setLoading(false);
-    }
-  };
+  //     console.log(data);
+  //     setArticles(data);
+  //   } catch (error) {
+  //     console.log(error);
+  //     seterror(true);
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
 
-  const handleAccept = e => {
-    setHasAccept(e.target.checked);
-  };
+  // const handleAccept = e => {
+  //   setHasAccept(e.target.checked);
+  // };
 
-  const handleSizeChange = e => {
-    setCoffeeSize(e.target.value);
-  };
+  // const handleSizeChange = e => {
+  //   setCoffeeSize(e.target.value);
+  // };
 
-  const handleChange = e => {
-    setInputValue(e.target.value);
-  };
+  // const handleChange = e => {
+  //   setInputValue(e.target.value);
+  // };
 
   useEffect(() => {
     console.log(`Current value: ${currentValue}`);
@@ -96,30 +96,30 @@ function App() {
     setIsOpen(prevIsOpen => !prevIsOpen);
   };
 
-  const handleLogin = data => {
-    console.log(data);
-  };
+  // const handleLogin = data => {
+  //   console.log(data);
+  // };
 
   return (
     <>
-      <h2>Latest articles</h2>
-      <SearchForm onSearchTopic={handleChangeTopic} />
-      {loading && (
+      {/* <h2>Latest articles</h2> */}
+      {/* <SearchForm onSearchTopic={handleChangeTopic} /> */}
+      {/* {loading && (
         <div className={css.contLoader}>
           <LoaderComponent />
           <p>Loading data, please wait...</p>
         </div>
       )}
       {error && <ErrorMessage />}
-      {!error && articles.length > 0 && <ArticleList items={articles} />}
+      {!error && articles.length > 0 && <ArticleList items={articles} />} */}
       {/* <FeedbackForm /> */}
       {/* <RadioBattons value={coffeeSize} onChange={handleSizeChange} /> */}
       {/* <p>Selected Language: {lang}</p> */}
       {/* <LangSwitcher value={lang} onSelect={setLang} /> */}
       {/* <Checkbox value={hasAccept} onShow={handleAccept} /> */}
 
-      {/* <h1 className={css.title}>Best selling</h1> */}
-      {/* <div className={css.cont}>
+      {/* <h1 className={css.title}>Best selling</h1>
+      <div className={css.cont}>
         <Product name="Tacos With Lime" img={tacos} price="100" />
         <Product name="Fries and Burger" img={burger} price="120" />
       </div> */}
@@ -131,11 +131,11 @@ function App() {
         <p>Text between opening and closing tag</p>
       </Card> */}
       {/* <Button name="Olga" /> */}
-      {/* <h2 className={css.titleCurrent}>Current value: {isOpen && currentValue}</h2> */}
-      {/* <Button onClick={onPlus}>Current value plus</Button> */}
-      {/* <Button onClick={onMinus}>Current value minus</Button> */}
-      {/* <Button onClick={onReset}>Reset</Button> */}
-      {/* <Button onClick={toggle}>{isOpen ? 'Hide' : 'Show'}</Button> */}
+      <h2 className={css.titleCurrent}>Current value: {isOpen && currentValue}</h2>
+      <Button onClick={onPlus}>Current value plus</Button>
+      <Button onClick={onMinus}>Current value minus</Button>
+      <Button onClick={onReset}>Reset</Button>
+      <Button onClick={toggle}>{isOpen ? 'Hide' : 'Show'}</Button>
       {/* <LoginForm onLogin={handleLogin} /> */}
       {/* <SearchBar value={inputValue} onChange={handleChange} /> */}
     </>
